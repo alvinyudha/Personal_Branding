@@ -2,11 +2,15 @@
 html,
 body{
     margin: 0px;
-    padding: 0px;
     font-size: 16px;
     font-family: "Nunito Sans", sans-serif;
     
 }   
+
+#home{
+    display: flex;
+    justify-content: space-between;
+}
 .wrapper {
     width: 1024px;
     margin: auto;
@@ -30,10 +34,10 @@ nav::before{
     content: '';
     background-image: url(../gambar/wddsprp.png);
     height: 90px;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: top;
     position: absolute;
-    opacity: 0.1;
+    opacity: 0.2;
     top: 0;
     right: 0;
     bottom: 0;
