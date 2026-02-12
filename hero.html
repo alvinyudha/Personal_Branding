@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Header Hero + Konten & Sticky Navbar (Responsif)</title>
+  <style>
+    :root{
+      --bg-gradient-start: #0f172a;
+      --bg-gradient-end: #0ea5a4;
+      --accent: #ffdd57;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.85);
+      --muted-2: rgba(255,255,255,0.7);
+      --glass: rgba(255,255,255,0.06);
+      --max-width: 1200px;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(2,6,23,0.6);
+      --gap: 28px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
+      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .page{
+      width:100%;
+      max-width:var(--max-width);
+    }
+
+    /* Navbar - sticky */
+    .navbar-wrap{
+      position:sticky;
+      top:24px;
+      z-index:40;
+      display:flex;
+      justify-content:center;
+      pointer-events:auto;
+    }
+    .navbar{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 16px;
+      border-radius:12px;
+      transition:all .22s ease;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 6px 18px rgba(2,6,23,0.35);
+      position:relative;
+    }
+    .navbar.stuck{
+      transform:translateY(-2px);
+      box-shadow: 0 18px 40px rgba(2,6,23,0.55);
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+      font-size:18px;
+    }
+    .logo{
+      width:44px;
+      height:44px;
+      background:linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06));
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 8px 20px rgba(2,6,23,0.4);
+      font-weight:800;
+      color:var(--bg-gradient-start);
+    }
+    .nav-actions{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .nav-actions .btn{
+      white-space:nowrap;
+    }
+    .btn{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.14);
+      color:var(--text);
+      padding:8px 14px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:600;
+      cursor:pointer;
+      transition:all .18s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg, var(--accent), #ffb86b);
+      color:#082032;
+      border:0;
+      box-shadow: 0 8px 24px rgba(255,189,79,0.18);
+    }
+    .btn:hover{ transform:translateY(-3px); }
+    .btn:active{ transform:translateY(0); }
+
+    /* Mobile nav toggle (hidden by default) */
+    .nav-toggle{
+      display:none;
+      border:0;
+      background:transparent;
+      color:var(--text);
+      font-size:18px;
+      padding:8px;
+    }
+
+    /* Hero */
+    .hero{
+      margin-top:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:var(--radius);
+      padding:36px;
+      display:flex;
+      gap:var(--gap);
+      align-items:center;
+      box-shadow:var(--shadow);
+    }
+    .hero-left{
+      flex:1 1 520px;
+      min-width:0;
+    }
+    .eyebrow{
+      display:inline-block;
+      background:var(--glass);
+      color:var(--muted);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:13px;
+      margin-bottom:16px;
+      letter-spacing:0.4px;
+    }
+    h1{
+      margin:0 0 14px 0;
+      font-size:40px;
+      line-height:1.05;
+      letter-spacing:-0.02em;
+      color:var(--text);
+    }
+    p.lead{
+      margin:0 0 20px 0;
+      color:var(--muted);
+      font-size:16px;
+      max-width:60ch;
+    }
+    .hero-ctas{ display:flex; gap:12px; flex-wrap:wrap; }
+
+    /* Hero right - illustration card */
+    .hero-right{
+      width:360px;
+      max-width:40%;
+      min-width:260px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 6px 20px rgba(2,6,23,0.45);
+    }
+    .mock-image{
+      height:170px;
+      border-radius:10px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.06), transparent 10%),
+        linear-gradient(135deg, rgba(14,165,164,0.14), rgba(14,165,164,0.03)),
+        linear-gradient(120deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--muted);
+      font-weight:700;
+      font-size:18px;
+    }
+    .stats{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+    }
+    .stat{
+      flex:1;
+      padding:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      border-radius:10px;
+      text-align:center;
+    }
+    .stat .num{ font-weight:800; font-size:18px; color:var(--text); }
+    .stat .label{ font-size:13px; color:var(--muted); margin-top:4px; }
+
+    /* Additional content sections */
+    .content{
+      margin-top:28px;
+      display:flex;
+      flex-direction:column;
+      gap:28px;
+    }
+
+    .section{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:20px;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 8px 30px rgba(2,6,23,0.25);
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+    .feature{
+      padding:16px;
+      border-radius:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      min-height:120px;
+    }
+    .feature h3{ margin:0 0 8px 0; font-size:16px; color:var(--text); }
+    .feature p{ margin:0; color:var(--muted-2); font-size:14px; }
+
+    .cards-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+    .product-card{
+      padding:14px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .product-card h4{ margin:0 0 8px 0; font-size:15px; }
+    .product-card p{ margin:0; color:var(--muted-2); font-size:13px; }
+
+    .testimonial{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .avatar{
+      width:64px;
+      height:64px;
+      border-radius:12px;
+      background:linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:var(--bg-gradient-start);
+      font-size:18px;
+    }
+    .quote{ color:var(--muted-2); font-size:15px; }
+
+    footer{
+      text-align:center;
+      color:var(--muted-2);
+      font-size:13px;
+      padding:12px 6px;
+    }
+
+    /* RESPONSIVE: breakpoints and tweaks
+       - >= 1400px: extra-large screens
+       - 1000–1399px: large desktops
+       - 700–999px: tablets / small laptops
+       - 480–699px: large phones
+       - <=479px: small phones
+    */
+
+    /* Extra-large screens: make hero right larger and spacing wider */
+    @media (min-width:1400px){
+      :root{ --max-width:1400px; --gap:36px; }
+      .hero-right{ width:420px; min-width:320px; }
+      h1{ font-size:48px; }
+      .hero{ padding:48px; }
+    }
+
+    /* Large desktop */
+    @media (min-width:1000px) and (max-width:1399px){
+      :root{ --gap:32px; }
+      .hero-right{ width:380px; min-width:300px; }
+      h1{ font-size:44px; }
+    }
+
+    /* Tablet / small laptop */
+    @media (min-width:700px) and (max-width:999px){
+      :root{ --gap:24px; }
+      .hero{ flex-direction:row; gap:24px; padding:28px; }
+      .hero-right{ width:320px; min-width:240px; }
+      h1{ font-size:36px; }
+      .features{ grid-template-columns:repeat(2,1fr); }
+      .cards-grid{ grid-template-columns:repeat(2,1fr); }
+    }
+
+    /* Large phones */
+    @media (min-width:480px) and (max-width:699px){
+      body{ padding:18px; }
+      .navbar-wrap{ top:12px; }
+      .navbar{ padding:10px 12px; }
+      .nav-actions{ gap:8px; }
+      .hero{
+        flex-direction:column;
+        padding:20px;
+        gap:18px;
+      }
+      .hero-right{ width:100%; max-width:100%; min-width:0; order:2; }
+      .hero-left{ order:1; width:100%; }
+      h1{ font-size:28px; }
+      .features{ grid-template-columns:1fr; }
+      .cards-grid{ grid-template-columns:1fr; }
+      .nav-toggle{ display:inline-flex; }
+      .nav-actions{ display:none; } /* hide full nav on smaller phones by default */
+    }
+
+    /* Small phones */
+    @media (max-width:479px){
+      body{ padding:12px; }
+      .page{ padding:0; }
+      .navbar-wrap{ top:10px; padding:0 6px; }
+      .navbar{ padding:8px 10px; border-radius:10px; }
+      .brand{ font-size:16px; gap:8px; }
+      .logo{ width:40px; height:40px; font-size:16px; border-radius:8px; }
+      .nav-toggle{ display:inline-flex; }
+      .nav-actions{ display:none; position:absolute; right:10px; top:56px; flex-direction:column; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:10px; padding:8px; border:1px solid rgba(255,255,255,0.04); box-shadow:0 8px 24px rgba(2,6,23,0.35); }
+      .nav-actions.open{ display:flex; }
+      .hero{ padding:16px; gap:12px; }
+      h1{ font-size:22px; }
+      p.lead{ font-size:14px; max-width:100%; }
+      .hero-right{ display:none; } /* hide right illustration on very small screens to save space */
+      .features{ grid-template-columns:1fr; }
+      .cards-grid{ grid-template-columns:1fr; }
+      .product-card, .feature{ min-height: auto; }
+    }
+
+    /* Utility spacing for demo content so sticky effect is visible */
+    .spacer{ height:16px; }
+
+  </style>
+</head>
+<body>
+  <div class="page" id="page">
+    <!-- Sticky navbar wrapper keeps the navbar in view while scrolling -->
+    <div class="navbar-wrap" id="navbarWrap">
+      <header class="navbar" id="navbar" role="navigation" aria-label="Primary">
+        <a class="brand" href="#">
+          <div class="logo" aria-hidden="true">H</div>
+          HeaderHero
+        </a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+
+        <nav class="nav-actions" id="navActions" role="navigation" aria-label="Primary links">
+          <a class="btn" href="#features">Features</a>
+          <a class="btn" href="#products">Products</a>
+          <a class="btn btn-primary" href="#get-started">Get Started</a>
+        </nav>
+      </header>
+    </div>
+
+    <!-- Hero -->
+    <main>
+      <section class="hero" role="banner" aria-label="Hero">
+        <div class="hero-left">
+          <span class="eyebrow">Baru • Rilis 2026</span>
+          <h1>Membangun antarmuka modern dengan header hero yang responsif</h1>
+          <p class="lead">Contoh ini menunjukkan tata letak hero yang bersih dan modular — lengkap dengan navbar, CTA, dan kartu ilustrasi. Navbar akan menempel di bagian atas saat scroll untuk kemudahan navigasi.</p>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#get-started">Mulai Sekarang</a>
+            <a class="btn" href="#features">Pelajari Lebih Lanjut</a>
+          </div>
+        </div>
+
+        <aside class="hero-right" aria-hidden="true">
+          <div class="card">
+            <div class="mock-image">Ilustrasi / Screenshot</div>
+            <div class="stats">
+              <div class="stat">
+                <div class="num">1.2K</div>
+                <div class="label">Pengguna</div>
+              </div>
+              <div class="stat">
+                <div class="num">98%</div>
+                <div class="label">Kepuasan</div>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.78);">Dipercantik dengan sedikit bayangan dan gradien untuk kedalaman visual.</div>
+        </aside>
+      </section>
+
+      <!-- Additional Content -->
+      <div class="content">
+        <section id="features" class="section" aria-labelledby="featuresTitle">
+          <h2 id="featuresTitle" style="margin-top:0;">Fitur Unggulan</h2>
+          <div class="features">
+            <div class="feature">
+              <h3>Desain Responsif</h3>
+              <p>Mengikuti praktik terbaik untuk tampil bagus di semua ukuran layar.</p>
+            </div>
+            <div class="feature">
+              <h3>Aksesibilitas</h3>
+              <p>Komponen terstruktur untuk dukungan keyboard dan pembaca layar.</
