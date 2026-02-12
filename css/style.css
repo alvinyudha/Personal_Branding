@@ -1,24 +1,42 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 html,
+:root {
+  --bg-gradient-start: rgba(9, 9, 121, 1);
+  --bg-gradient-end: rgba(0, 212, 255, 1);
+  --accent: #ffdd57;
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.85);
+  --muted-2: rgba(255, 255, 255, 0.7);
+  --glass: rgba(255, 255, 255, 0.06);
+  --max-width: 1200px;
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+  --gap: 28px;
+}
 body {
-  margin: 0px;
+  margin: auto;
   font-size: 16px;
   font-family: "Nunito Sans", sans-serif;
-  background: #ffffff;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(215, 215, 215, 1) 100%
+  background: linear-gradient(
+    82deg,
+    rgba(181, 174, 238, 1),
+    rgba(148, 187, 233, 1)
   );
-}
-
-@media (max-width: 600px) {
 }
 
 .wrapper {
   width: 1024px;
   margin: auto;
   padding: 20px 0px 20px 0px;
+}
+.brand {
+  text-decoration: none;
+
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  gap: 8px;
 }
 .logo {
   display: flex;
@@ -34,7 +52,7 @@ body {
   box-shadow: 0 8px 20px rgba(2, 6, 23, 0.4);
   border-radius: 10px;
 }
-.logo > img {
+img {
   height: 50px;
 }
 nav {
@@ -67,6 +85,22 @@ nav::before {
   left: 0;
   z-index: -1;
   pointer-events: none;
+}
+.menu {
+  width: 50%;
+}
+.menu ul {
+  display: flex;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  justify-content: space-around;
+  text-decoration: none;
+  color: #fff;
+}
+.menu ul li a {
+  text-decoration: none;
+  color: #fff;
 }
 header .wrapper {
   /* background-image: url(../gambar/yuki.jpg); */
@@ -105,22 +139,7 @@ header img {
   text-align: center;
   color: #000000;
 }
-.menu {
-  width: 50%;
-}
-.menu ul {
-  display: flex;
-  list-style: none;
-  margin: 0px;
-  padding: 0px;
-  justify-content: space-around;
-  text-decoration: none;
-  color: #fff;
-}
-.menu ul li a {
-  text-decoration: none;
-  color: #fff;
-}
+
 .button {
   background-color: #ffffff;
   border: none;
@@ -171,7 +190,12 @@ header img {
   text-align: center;
 }
 .boxx {
-  background-color: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(20, 1, 1, 1) 0%,
+    rgba(122, 2, 201, 1) 85%,
+    rgba(157, 0, 255, 1) 100%
+  );
   padding: 20px;
   border-radius: 10px;
   text-align: center;
@@ -189,4 +213,7 @@ td {
   border: 1px solid rgb(255, 255, 255);
   padding: 10px;
   text-align: left;
+}
+h1 {
+  font-size: 22px;
 }
