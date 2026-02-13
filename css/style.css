@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 html,
 :root {
-  --bg-gradient-start: rgba(9, 9, 121, 1);
-  --bg-gradient-end: rgba(0, 212, 255, 1);
+  --bg-gradient-start: rgba(181, 174, 238, 1);
+  --bg-gradient-end: rgba(148, 187, 233, 1);
   --accent: #ffdd57;
   --text: #ffffff;
   --muted: rgba(255, 255, 255, 0.85);
@@ -19,8 +19,8 @@ body {
   font-family: "Nunito Sans", sans-serif;
   background: linear-gradient(
     82deg,
-    rgba(181, 174, 238, 1),
-    rgba(148, 187, 233, 1)
+    var(--bg-gradient-start),
+    var(--bg-gradient-end)
   );
 }
 
@@ -31,7 +31,6 @@ body {
 }
 .brand {
   text-decoration: none;
-
   color: var(--text);
   display: flex;
   align-items: center;
@@ -58,7 +57,6 @@ img {
 nav {
   background: linear-gradient(
     90deg,
-    rgba(20, 1, 1, 1) 0%,
     rgba(122, 2, 201, 1) 85%,
     rgba(157, 0, 255, 1) 100%
   );
@@ -67,6 +65,9 @@ nav {
   top: 0;
   z-index: 1000; /*merupakan tumpukan layar, semakin besar z-index semakin jg berada diplaing atas */
 }
+nav .name {
+  padding-left: 10px;
+}
 nav .wrapper {
   display: flex;
   align-items: center;
@@ -74,11 +75,11 @@ nav .wrapper {
 }
 nav::before {
   content: "";
-  background-image: url(../gambar/wddsprp.png);
-  background-repeat: repeat;
+  background-image: url(../gambar/cropped-1920-1080-996764.jpg);
+  background-repeat: no-repeat;
   background-position: top;
   position: absolute;
-  opacity: 0.2;
+  opacity: 0.1;
   top: 0;
   right: 0;
   bottom: 0;
@@ -102,20 +103,48 @@ nav::before {
   text-decoration: none;
   color: #fff;
 }
+.hero {
+  padding-top: 56px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-gradient-start),
+    var(--bg-gradient-end)
+  );
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+.hero-right {
+  max-width: 40%;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 header .wrapper {
   /* background-image: url(../gambar/yuki.jpg); */
   height: 80vh;
-  background-position: center;
+  /* background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   position: relative;
   display: flex;
   justify-content: space-between;
 }
 header img {
-  width: 250;
-  height: 300;
+  width: 300;
+  height: 350;
   position: relative;
+}
+.boxx {
+  background: linear-gradient(
+    100deg,
+    rgba(20, 1, 1, 1) 0%,
+    rgba(122, 2, 201, 1) 65%,
+    rgba(157, 0, 255, 1) 100%
+  );
+  padding: 14px;
+  border-radius: 10px;
+  text-align: center;
 }
 .header-opacity {
   background-color: #000000;
@@ -189,17 +218,7 @@ header img {
   border-radius: 10px;
   text-align: center;
 }
-.boxx {
-  background: linear-gradient(
-    90deg,
-    rgba(20, 1, 1, 1) 0%,
-    rgba(122, 2, 201, 1) 85%,
-    rgba(157, 0, 255, 1) 100%
-  );
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-}
+
 .head {
   text-align: center;
 }
