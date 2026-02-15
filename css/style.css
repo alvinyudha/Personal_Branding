@@ -13,17 +13,35 @@ html,
   --shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
   --gap: 28px;
 }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 body {
   margin: auto;
   font-size: 16px;
   font-family: "Nunito Sans", sans-serif;
   background: linear-gradient(
-    82deg,
+    145deg,
     var(--bg-gradient-start),
     var(--bg-gradient-end)
   );
 }
-
+body::before {
+  content: "";
+  background-image: url(../gambar/cropped-1920-1080-996764.jpg);
+  background-repeat: repeat;
+  background-position: top;
+  position: fixed;
+  opacity: 0.1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+}
 .wrapper {
   width: 1024px;
   margin: auto;
@@ -87,6 +105,15 @@ nav::before {
   z-index: -1;
   pointer-events: none;
 }
+/* Mobile nav toggle (hidden by default) */
+.nav-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 18px;
+  padding: 8px;
+}
 .menu {
   width: 50%;
 }
@@ -103,38 +130,85 @@ nav::before {
   text-decoration: none;
   color: #fff;
 }
-.hero {
-  padding-top: 56px;
-  background: linear-gradient(
-    90deg,
-    var(--bg-gradient-start),
-    var(--bg-gradient-end)
-  );
-  color: var(--text);
-  box-shadow: var(--shadow);
-}
-.hero-right {
-  max-width: 40%;
-  min-width: 260px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-header .wrapper {
-  /* background-image: url(../gambar/yuki.jpg); */
-  height: 80vh;
-  /* background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat; */
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-}
-header img {
+section img {
   width: 300;
   height: 350;
   position: relative;
 }
+.hero {
+  width: 1024px;
+  margin: auto;
+  padding: 0px 0px 50px 0px;
+  position: relative;
+  display: flex;
+  color: var(--text);
+}
+.hero-left {
+  justify-content: center;
+  flex: 1 1 50%;
+  /* background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(215, 215, 215, 1) 100%
+  ); */
+  padding: 6vw 5vw 9vw 0vw;
+  display: grid;
+  /* clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%); */
+  background: rgba(255, 255, 255, 0.5) 85%;
+  margin: 10px;
+}
+.hero-right {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  /* display: flex;
+  align-items: center;
+  max-width: 40%;
+  min-width: 260px;
+  gap: 12px;
+  padding-right: 1vw; */
+}
+.hero-right img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* text style */
+.intro-small {
+  font-family: "Raleway";
+  font-size: 25px;
+  color: #222;
+  font-weight: bold;
+  margin-bottom: 25px;
+  letter-spacing: -1px;
+}
+.name-hero {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 60px;
+  margin-bottom: 20px;
+  color: #000000;
+  letter-spacing: -3px;
+}
+.subtitle {
+  font-family: "Raleway";
+  color: #8a8a8a;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+/* section .wrapper {
+  background-image: url(../gambar/yuki.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+} */
 .boxx {
   background: linear-gradient(
     100deg,
@@ -168,9 +242,16 @@ header img {
   text-align: center;
   color: #000000;
 }
-
 .button {
-  background-color: #ffffff;
+  background-image: linear-gradient(
+    to right,
+    #f09819 0%,
+    #edde5d 51%,
+    #f09819 100%
+  );
+}
+.button {
+  background-size: 200% auto;
   border: none;
   padding: 10px 22px;
   text-align: center;
@@ -178,19 +259,14 @@ header img {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 25px;
-  transition-duration: 0.4s;
-  transition: all 0.18s ease;
+  box-shadow: 0 0 20px #eee;
+  transition: 1s;
 }
 .button:hover {
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background-position: right center;
 }
 .menu ul li a.button {
-  color: #000000;
+  color: #ffffff;
 }
 .menu ul li a.button:hover {
   color: #ffffff;
@@ -218,7 +294,6 @@ header img {
   border-radius: 10px;
   text-align: center;
 }
-
 .head {
   text-align: center;
 }
@@ -233,6 +308,35 @@ td {
   padding: 10px;
   text-align: left;
 }
-h1 {
-  font-size: 22px;
+
+/*
+* responsive design for 1024, 768, 576 
+*/
+@media only screen and (min-width: 992px) and (max-width: 1024px) {
+  .wrapper {
+    width: 90%;
+  }
+  .hero {
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .wrapper {
+    width: 80%;
+  }
+  .hero-left {
+    clip-path: none; /* remove slanted divider on smaller screens */
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 767px) {
+  .wrapper {
+    width: 90%;
+  }
+  .nav-toggle {
+    display: inline-flex;
+  }
+  .menu {
+    display: none;
+  }
 }
