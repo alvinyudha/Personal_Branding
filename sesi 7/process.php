@@ -6,17 +6,12 @@ include "../koneksi.php";
 $nama_produk = $_POST['nama_produk'];
 $harga = $_POST['harga'];
 $deskripsi = $_POST['deskripsi'];
-
-// // validasi sederhana
-// if (empty($nama) || empty($harga) || empty($deskripsi)) {
-//     echo "Data tidak boleh kosong!";
-//     exit;
-// }
-
+$kategori_id = $_POST['kategori_id'];
 
 // query insert
-$query = "INSERT INTO products (nama_produk, harga, deskripsi)
-          VALUES ('$nama_produk', '$harga', '$deskripsi')";
+$query = "INSERT INTO products (nama_produk, harga, deskripsi, categories_id)
+          VALUES ('$nama_produk', '$harga', '$deskripsi', '$kategori_id')";
+
 
 // jalankan query
 if (mysqli_query($conn, $query)) {
@@ -24,7 +19,13 @@ if (mysqli_query($conn, $query)) {
 } else {
     echo "Gagal menyimpan data";
 }
+$query = "SELECT products.*, categories.categories_name
+          FROM products
+          JOIN categories ON products.categories_id = categories.id";
+
+$data = mysqli_query($conn, $query);
 echo "<h1>Form data receive</h1>";
 echo "<p>nama: $nama_produk</p>";
+echo "<p>kategori: $kategori_id</p>";
 echo  "<p>harga: $harga</p>";
 echo "<p>deskripsi: . nl2br($deskripsi).</p>";
