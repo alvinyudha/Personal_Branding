@@ -7,7 +7,7 @@
   <title>Form Produk</title>
 
   <?php
-  include "../koneksi.php";
+  include "koneksi.php";
 
   $kategori = mysqli_query($conn, "SELECT * FROM categories");
   ?>

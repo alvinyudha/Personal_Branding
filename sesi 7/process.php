@@ -1,6 +1,6 @@
 <?php
 
-include "../koneksi.php";
+include "koneksi.php";
 
 // ambil data dari form
 $nama_produk = $_POST['nama_produk'];
@@ -19,13 +19,13 @@ if (mysqli_query($conn, $query)) {
 } else {
     echo "Gagal menyimpan data";
 }
-$query = "SELECT products.*, categories.categories_name
-          FROM products
-          JOIN categories ON products.categories_id = categories.id";
+// $query = "SELECT products.*, categories.categories_name
+//           FROM products
+//           JOIN categories ON products.categories_id = categories.id";
 
-$data = mysqli_query($conn, $query);
-echo "<h1>Form data receive</h1>";
-echo "<p>nama: $nama_produk</p>";
-echo "<p>kategori: $kategori_id</p>";
-echo  "<p>harga: $harga</p>";
-echo "<p>deskripsi: . nl2br($deskripsi).</p>";
+// $data = mysqli_query($conn, $query);
+// echo "<h1>Form data receive</h1>";
+// echo "<p>nama: $nama_produk</p>";
+// echo "<p>kategori: $kategori_id</p>";
+// echo  "<p>harga: $harga</p>";
+// echo "<p>deskripsi: . nl2br($deskripsi).</p>";
