@@ -61,8 +61,8 @@ $result = mysqli_query($conn, "SELECT * FROM products");
             <th>No</th>
             <th>Nama Produk</th>
             <th>Kategori</th>
-            <th>Deskripsi</th>
             <th>Harga</th>
+            <th>Deskripsi</th>
             <th>Aksi</th>
         </tr>
 
@@ -71,25 +71,25 @@ $result = mysqli_query($conn, "SELECT * FROM products");
         while ($row = mysqli_fetch_assoc($data)) {
         ?>
 
-        <tr>
-            <td><?= $no++ ?></td>
-            <td><?= $row['nama_produk'] ?></td>
-            <td><?= $row['categories_name'] ?></td>
-            <td><?= $row['deskripsi'] ?></td>
-            <td><?= $row['harga'] ?></td>
+            <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $row['product_name'] ?></td>
+                <td><?= $row['categories_name'] ?></td>
+                <td><?= $row['price'] ?></td>
+                <td><?= $row['description'] ?></td>
 
-            <td>
-                <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">
-                    Edit
-                </a>
-                <a href="products.php?hapus=<?= $row['id'] ?>" class="btn btn-danger btn-sm"
-                    onclick="return confirm('Yakin ingin menghapus produk ini?')">
-                    Hapus
-                </a>
+                <td>
+                    <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+                    <a href="products.php?hapus=<?= $row['id'] ?>" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Yakin ingin menghapus produk ini?')">
+                        Hapus
+                    </a>
 
-            </td>
+                </td>
 
-        </tr>
+            </tr>
 
         <?php } ?>
 

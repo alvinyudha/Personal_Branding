@@ -3,19 +3,22 @@
 include "koneksi.php";
 
 // ambil data dari form
-$nama_produk = $_POST['nama_produk'];
-$harga = $_POST['harga'];
-$deskripsi = $_POST['deskripsi'];
-$categries_name = $_POST['categries_name'];
+$product_name = $_POST['product_name'];
+$price = $_POST['price'];
+$description = $_POST['description'];
+$categories_id = $_POST['categories_id'];
 
 // query insert
-$query = "INSERT INTO products (nama_produk, harga, deskripsi, categories_name)
-          VALUES ('$nama_produk', '$harga', '$deskripsi', '$categries_name')";
+$query = "INSERT INTO products (product_name, price, description, categories_id)
+          VALUES ('$product_name', '$price', '$description', '$categories_id')";
 
 
 // jalankan query
 if (mysqli_query($conn, $query)) {
-    echo "Data produk berhasil disimpan";
+    echo "<script>
+            alert('Data berhasil disimpan');
+            window.location='products.php';
+            </script>";
 } else {
     echo "Gagal menyimpan data";
 }
