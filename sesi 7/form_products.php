@@ -13,7 +13,7 @@
   ?>
   <!-- Bootstrap 5 CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <script>
+  <!-- <script>
     function validasiForm() {
       let nama = document.forms["formProduk"]["nama_produk"].value;
       let harga = document.forms["formProduk"]["harga"].value;
@@ -26,7 +26,7 @@
 
       return true;
     }
-  </script>
+  </script> -->
 </head>
 
 <body>
@@ -42,12 +42,12 @@
             <form action="process.php" method="POST">
               <div class="mb-3">
                 <label class="form-label">Nama Produk</label>
-                <input type="text" name="nama_produk" class="form-control"
+                <input type="text" name="product_name" class="form-control"
                   placeholder="Masukkan nama produk" />
               </div>
               <div class="mb-3">
                 <label class="form-label">Kategori Produk</label>
-                <select name="kategori_id" class="form-select">
+                <select name="categories_id" class="form-select">
                   <option value="" disabled selected>-- Pilih Kategori Produk --</option>
 
                   <?php while ($k = mysqli_fetch_assoc($kategori)) { ?>
@@ -62,13 +62,13 @@
 
               <div class="mb-3">
                 <label class="form-label">Harga</label>
-                <input type="number" name="harga" class="form-control"
+                <input type="number" name="price" class="form-control"
                   placeholder="Masukkan harga produk" />
               </div>
 
               <div class="mb-3">
                 <label class="form-label">Deskripsi</label>
-                <textarea name="deskripsi" class="form-control" rows="3"
+                <textarea name="description" class="form-control" rows="3"
                   placeholder="Masukkan deskripsi produk"></textarea>
               </div>
 

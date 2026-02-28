@@ -3,14 +3,14 @@
 include "koneksi.php";
 
 // ambil data dari form
-$nama_produk = $_POST['nama_produk'];
-$harga = $_POST['harga'];
-$deskripsi = $_POST['deskripsi'];
-$kategori_id = $_POST['kategori_id'];
+$product_name = $_POST['product_name'];
+$price = $_POST['price'];
+$description = $_POST['description'];
+$categories_id = $_POST['categories_id'];
 
 // query insert
-$query = "INSERT INTO products (nama_produk, harga, deskripsi, categories_id)
-          VALUES ('$nama_produk', '$harga', '$deskripsi', '$kategori_id')";
+$query = "INSERT INTO products (product_name, price, description, categories_id)
+          VALUES ('$product_name', '$price', '$description', '$categories_id')";
 
 
 // jalankan query

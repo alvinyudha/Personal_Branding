@@ -11,8 +11,6 @@ $categories_id = $_POST['categories_id'];
 // query insert
 $query = "INSERT INTO products (product_name, price, description, categories_id)
           VALUES ('$product_name', '$price', '$description', '$categories_id')";
-
-
 // jalankan query
 if (mysqli_query($conn, $query)) {
     echo "<script>

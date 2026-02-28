@@ -13,20 +13,21 @@
     ?>
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <script>
+    <!-- <script>
         function validasiForm() {
             let nama = document.forms["formProduk"]["product_name"].value;
             let harga = document.forms["formProduk"]["price"].value;
             let deskripsi = document.forms["formProduk"]["description"].value;
+            let kategori = document.forms["formProduk"]["categories_id"].value;
 
-            if (nama == "" || harga == "" || deskripsi == "") {
+            if (nama == "" || harga == "" || deskripsi == "" || kategori == "") {
                 alert("Semua field harus diisi!");
                 return false;
             }
 
             return true;
         }
-    </script>
+    </script> -->
 </head>
 
 <body>
@@ -47,7 +48,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Kategori Produk</label>
-                                <select name="kategori_id" class="form-select">
+                                <select name="categories_id" class="form-select">
                                     <option value="" disabled selected>-- Pilih Kategori Produk --</option>
 
                                     <?php while ($k = mysqli_fetch_assoc($kategori)) { ?>
@@ -72,9 +73,12 @@
                                     placeholder="Masukkan deskripsi produk"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary w-100">
+                            <button type="submit" class="btn btn-primary">
                                 Simpan Produk
                             </button>
+                            <a href="products.php" class="btn btn-secondary">
+                                Kembali
+                            </a>
                         </form>
                     </div>
                 </div>
