@@ -18,5 +18,7 @@ if (mysqli_query($conn, $query)) {
             window.location='products.php';
             </script>";
 } else {
-    echo "Gagal menyimpan data";
+    echo "  <script>
+            alert('Data gagal disimpan');
+                </script>";
 }
