@@ -121,7 +121,6 @@
                     <td><?= $d['categories_name'] ?></td>
                     <td><?= $d['price'] ?></td>
                     <td><?= $d['description'] ?></td>
-
                     <td>
                         <a href="" class="btn btn-warning btn-sm" data-toggle="modal"
                             data-target="#updateModal<?= $d['id'] ?>">
@@ -131,9 +130,7 @@
                             onclick="return confirm('Yakin ingin menghapus produk ini?')">
                             Hapus
                         </a>
-
                     </td>
-
                 </tr>
 
                 <!-- Modal update -->
