@@ -9,8 +9,7 @@
     <?php
     include "koneksi.php";
 
-    $kategori = mysqli_query($conn, "SELECT * FROM categories");
-
+    // $kategori = mysqli_query($conn, "SELECT * FROM categories");
 
     if (isset($_POST['simpan'])) {
         // ambil data dari form

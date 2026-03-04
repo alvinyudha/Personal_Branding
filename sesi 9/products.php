@@ -67,7 +67,7 @@
         <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#storeProductmodal">
             Tambah Produk
         </a>
-        <a href="storeCategory.php" class="btn btn-warning mb-3 text-white">
+        <a href="" class="btn btn-warning mb-3 text-white" data-toggle="modal" data-target="#storeCategorymodal">
             Tambah Kategori
         </a>
         <!-- Filter & Search -->
@@ -133,7 +133,7 @@
                     </td>
                 </tr>
 
-                <!-- Modal update -->
+                <!-- Modal update Products-->
                 <div class="modal fade" id="updateModal<?= $d['id'] ?>" tabindex="-1"
                     aria-labelledby="updateModal<?= $d['id'] ?>Label" aria-hidden="true">
                     <div class="modal-dialog">
@@ -215,14 +215,11 @@
                                             <?php } ?>
                                         </select>
                                     </div>
-
-
                                     <div class="mb-3">
                                         <label class="form-label">Harga</label>
                                         <input type="number" name="price" class="form-control"
                                             placeholder="Masukkan harga produk" />
                                     </div>
-
                                     <div class="mb-3">
                                         <label class="form-label">Deskripsi</label>
                                         <textarea name="description" class="form-control" rows="3"
@@ -233,6 +230,36 @@
                                             data-dismiss="modal">Kembali</button>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Store Categories -->
+                <div class="modal fade" id="storeCategorymodal" tabindex="-1" role="dialog"
+                    aria-labelledby="storeCategorymodalTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="storeCategorymodalTitle">Tambah Kategori Baru</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="insertCategory.php" method="POST">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nama Kategori</label>
+                                        <input type="text" name="categories_name" class="form-control"
+                                            placeholder="Masukkan nama kategori" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Kembali</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
