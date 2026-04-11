@@ -1,29 +1,13 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daftar Kategori</title>
-    <!-- Bootstrap 4 CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .table-container {
-            background-color: white;
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-
-<body>
+@extends('layouts.master')
+@section('content')
     <div class="container mt-5 mb-5">
+        <br>
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h3>📂 Daftar Kategori</h3>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#createCategoryModal">
+                <i class="fas fa-plus"></i> Tambah Kategori
+            </button>
+        </div>
         <!-- Alert Messages -->
         @if ($message = Session::get('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -42,14 +26,6 @@
                 </button>
             </div>
         @endif
-
-        <div class="d-flex justify-content-between align-items-center mb-5">
-            <h3>📂 Daftar Kategori</h3>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#createCategoryModal">
-                <i class="fas fa-plus"></i> Tambah Kategori
-            </button>
-        </div>
-
         <div class="table-container">
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
@@ -162,32 +138,18 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label for="edit_category_name{{ $category->id }}">Nama Kategori</label>
-                                <input type="text" class="form-control"
-                                    id="edit_category_name{{ $category->id }}" name="categories_name"
-                                    value="{{ $category->categories_name }}" required>
+                                <input type="text" class="form-control" id="edit_category_name{{ $category->id }}"
+                                    name="categories_name" value="{{ $category->categories_name }}" required>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" form="editCategoryForm{{ $category->id }}"
-                            class="btn btn-primary">Simpan Perubahan</button>
+                        <button type="submit" form="editCategoryForm{{ $category->id }}" class="btn btn-primary">Simpan
+                            Perubahan</button>
                     </div>
                 </div>
             </div>
         </div>
     @endforeach
-
-    <!-- include Bootstrap JS (bundle includes Popper) -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
+@endsection

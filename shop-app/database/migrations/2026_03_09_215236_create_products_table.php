@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('product_name');
             $table->integer('price');
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->integer('stok');
 
             $table->foreign('category_id', 'fk_product_category')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');

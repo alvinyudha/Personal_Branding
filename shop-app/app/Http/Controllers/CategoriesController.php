@@ -11,7 +11,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Categories::all();
-        return view('categories.index', compact('categories'));
+        return view('pages.categories.index', compact('categories'));
     }
 
 
@@ -49,10 +49,10 @@ class CategoriesController extends Controller
         $category = Categories::findOrFail($id);
 
         // Check if category has products
-        if ($category->products()->count() > 0) {
-            return redirect()->route('categories.index')
-                ->with('error', 'Tidak dapat menghapus kategori yang memiliki produk');
-        }
+        // if ($category->products()->count() > 0) {
+        //     return redirect()->route('categories.index')
+        //         ->with('error', 'Tidak dapat menghapus kategori yang memiliki produk');
+        // }
 
         $category->delete();
         return redirect()->route('categories.index')->with('success', 'Kategori berhasil dihapus');
