@@ -18,10 +18,11 @@ class HomeController extends Controller
         $categories = Categories::all();
         return view('pages.home.index', compact('products', 'categories'));
     }
+    public function cart()
+    {
+        return view('pages.home.cart');
+    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
