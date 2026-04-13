@@ -12,10 +12,18 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Products::all();
+        $search     = $request->input('search');
+        $products   = Products::with('category')
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', "%{$search}%");
+            })
+            ->orderBy('price', 'asc')
+            ->paginate(6);
+
         $categories = Categories::all();
+
         return view('pages.home.index', compact('products', 'categories'));
     }
     public function cart()
