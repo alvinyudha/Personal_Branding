@@ -10,8 +10,11 @@
             @forelse ($products as $product)
                 <div class="col-md-4 mb-4 d-flex justify-content-center ">
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{ asset('storage/' . $product->image) }}"
-                            alt="{{ $product->product_name }}" style="height: 200px; object-fit: cover;">
+                        @if ($product->image)
+                           <img class="card-img-top" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->product_name }}" style="height: 200px; object-fit: cover;">
+                        @else
+                            <img class="card-img-top" src="{{ asset('storage/images/defaultIMG.png') }}" alt="{{ $product->product_name }}" style="height: 200px; object-fit: cover;">
+                        @endif
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->product_name }}</h5>
                             <p class="card-text">{{ Str::limit($product->description, 100) }}</p>
