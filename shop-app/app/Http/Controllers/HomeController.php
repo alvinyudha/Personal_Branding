@@ -15,11 +15,23 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $search     = $request->input('search');
+        $category = $request->input('category');
+        $sortPrice = $request->input('sort_price');
         $products   = Products::with('category')
             ->when($search, function ($query, $search) {
-                return $query->where('name', 'like', "%{$search}%");
+                return $query->where('product_name', 'like', "%{$search}%");
             })
-            ->orderBy('price', 'asc')
+            ->when($category, function ($query, $category) {
+                return $query->where('category_id', $category);
+            })
+            ->when($sortPrice, function ($query, $sortPrice) {
+                if ($sortPrice === 'asc') {
+                    return $query->orderBy('price', 'asc');
+                } elseif ($sortPrice === 'desc') {
+                    return $query->orderBy('price', 'desc');
+                }
+                return $query;
+            })
             ->paginate(6);
 
         $categories = Categories::all();
